@@ -1,0 +1,32 @@
+body {
+	text-align: center;
+    background-color: peachpuff;
+}
+
+.board-game {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 80%;
+    border: 5px solid black;
+    margin: auto;
+    background-color: pink;
+    max-width: 800px;
+    max-height: 1000px;
+}
+
+.card {
+    display: block;
+    padding: 10px;
+    width: 160px;
+    height: 160px;
+    background-color : hotpink;
+    border: 5px solid black;
+    border-radius: 15px;
+    margin: 5px;
+}
+
+.card > img {
+    display: block;
+    width: 160px;
+}
