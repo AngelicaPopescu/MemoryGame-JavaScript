@@ -25,6 +25,10 @@ function startTimer() {
     }, 1000);
 }
 
+function stopMyTimer() {
+    clearInterval(interval)
+}
+
 function moveCounter() {
     let moveCount = document.querySelector('.moves')
     moves++
@@ -114,6 +118,26 @@ function checkPictures(cards) {
         }
     }
     if (count === 0) {
-        alert('u winn')
+        gameWin()
+        stopMyTimer()
     }
+}
+
+function gameWin() {
+    setTimeout(function () {
+        window.popup = document.getElementById("popup1");
+        let finalTime = document.querySelector('.timer').innerHTML;
+        let finalMoves = document.querySelector('.moves').innerHTML;
+        popup.classList.add('show');
+        document.getElementById("finalMove").innerHTML = finalMoves;
+        document.getElementById("totalTime").innerHTML = finalTime;
+        closePopup();
+    }, 2000);
+}
+
+function closePopup() {
+    let closeIcon = document.querySelector(".close");
+    closeIcon.addEventListener("click", function (e) {
+        popup.classList.remove("show");
+    });
 }
