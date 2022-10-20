@@ -1,6 +1,5 @@
 initGame();
 
-
 let moves = 0,
     TIMER
 
