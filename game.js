@@ -7,21 +7,29 @@ function initGame() {
 }
 
 
-function startTimer(){
-    let sec = 0, min = 0;
-    window.interval = setInterval(function(){
-        let timer = document.querySelector(".timer");
+function startTimer() {
+    let sec = 1, min = 0;
+    let timer = document.querySelector(".timer");
+    timer.innerHTML='0 Minutes 0 Seconds'
+    window.interval = setInterval(function () {
         timer.innerHTML = min + " Minutes " + sec + " Seconds";
         sec++;
-        if(sec === 60){
+        if (sec === 60) {
             min++;
-            sec=0;
+            sec = 0;
         }
         window.secSave = sec - 1;
         window.minSave = min;
-    },1000);
+    }, 1000);
 }
 
+let moves = 0
+
+function moveCounter() {
+    let moveCount = document.querySelector('.moves')
+    moves++
+    moveCount.innerHTML = moves + 'moves'
+}
 
 function getPictures() {
     let randomNumbers = []
@@ -39,6 +47,7 @@ function getPictures() {
             window.randomNumber = randomNumbers.pop();
         }
         card.children[0].setAttribute("src", "static/images/" + randomNumber + ".png");
+        card.addEventListener('click', openCard)
         counter++;
     }
 }
@@ -51,7 +60,48 @@ function shuffledCards() {
     }
 }
 
+function openCard(e) {
+    if (document.querySelector(".timer").innerHTML==='0 Minutes 0 Seconds') {
+        startTimer()
+    }
+    e.currentTarget.id = '2'
+    e.currentTarget.querySelector('img').classList.remove('hidden');
+    const cards = document.querySelectorAll('.card');
+    checkPictures(cards)
+}
 
-function checkCards() {
+function checkPictures(cards) {
+    let count=0,
+    src = '',
+    openedCard;
+    for (let card of cards) {
+        if (card.id==='0') {
+           count++
+        }
+        if (card.id === '2') {
+            if (src === '') {
+                src = card.querySelector('img').getAttribute('src')
+                openedCard = card
+            } else {
+                moveCounter()
+                if (card.querySelector('img').getAttribute('src') === src) {
+                    card.id = '1'
+                    openedCard.id = '1'
+                    card.removeEventListener('click', openCard)
+                    openedCard.removeEventListener('click', openCard)
+                } else {
+                    setTimeout(() => {
+                        card.querySelector('img').classList.add('hidden')
+                        card.id = '0'
+                        openedCard.id = '0'
+                        openedCard.querySelector('img').classList.add('hidden')
+                    }, 1000)
 
+                }
+            }
+        }
+    }
+        if (count===0) {
+            alert('u winn in mortii tei')
+    }
 }
