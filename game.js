@@ -1,8 +1,8 @@
 initGame();
 
 
-let moves = 0
-let g = 0
+let moves = 0,
+    TIMER
 
 function initGame() {
     getPictures()
@@ -10,7 +10,7 @@ function initGame() {
 }
 
 function startTimer() {
-    let sec = 1, min = 0;
+    let sec = 0, min = 0;
     let timer = document.querySelector(".timer");
     timer.innerHTML = '0 Minutes 0 Seconds'
     window.interval = setInterval(function () {
@@ -20,9 +20,10 @@ function startTimer() {
             min++;
             sec = 0;
         }
-        window.secSave = sec - 1;
+        window.secSave = sec;
         window.minSave = min;
     }, 1000);
+    TIMER = window.interval
 }
 
 function stopMyTimer() {
@@ -65,7 +66,7 @@ function shuffledCards() {
 }
 
 function openCard(e) {
-    if (document.querySelector(".timer").innerHTML === '0 Minutes 0 Seconds') {
+    if (TIMER === undefined) {
         startTimer()
     }
     const cards = document.querySelectorAll('.card');
