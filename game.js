@@ -1,16 +1,18 @@
 initGame();
 
+
+let moves = 0
+let g = 0
+
 function initGame() {
-    // Your game can start here, but define separate functions, don't write everything in here :)
     getPictures()
     shuffledCards()
 }
 
-
 function startTimer() {
     let sec = 1, min = 0;
     let timer = document.querySelector(".timer");
-    timer.innerHTML='0 Minutes 0 Seconds'
+    timer.innerHTML = '0 Minutes 0 Seconds'
     window.interval = setInterval(function () {
         timer.innerHTML = min + " Minutes " + sec + " Seconds";
         sec++;
@@ -22,8 +24,6 @@ function startTimer() {
         window.minSave = min;
     }, 1000);
 }
-
-let moves = 0
 
 function moveCounter() {
     let moveCount = document.querySelector('.moves')
@@ -61,23 +61,32 @@ function shuffledCards() {
 }
 
 function openCard(e) {
-    if (document.querySelector(".timer").innerHTML==='0 Minutes 0 Seconds') {
+    if (document.querySelector(".timer").innerHTML === '0 Minutes 0 Seconds') {
         startTimer()
     }
-    e.currentTarget.id = '2'
-    e.currentTarget.querySelector('img').classList.remove('hidden');
     const cards = document.querySelectorAll('.card');
-    checkPictures(cards)
+    let count = 0
+    for (let card of cards) {
+        if (card.id === '2') {
+            count++
+        }
+    }
+    if (count < 2) {
+        e.currentTarget.id = '2';
+        e.currentTarget.querySelector('img').classList.remove('hidden');
+
+        checkPictures(cards)
+    }
 }
 
 
 function checkPictures(cards) {
-    let count=0,
-    src = '',
-    openedCard;
+    let count = 0,
+        src = '',
+        openedCard;
     for (let card of cards) {
-        if (card.id==='0') {
-           count++
+        if (card.id === '0') {
+            count++
         }
         if (card.id === '2') {
             if (src === '') {
@@ -95,16 +104,16 @@ function checkPictures(cards) {
                 } else {
                     setTimeout(() => {
                         card.querySelector('img').classList.add('hidden')
+                        openedCard.querySelector('img').classList.add('hidden')
                         card.id = '0'
                         openedCard.id = '0'
-                        openedCard.querySelector('img').classList.add('hidden')
                     }, 1000)
 
                 }
             }
         }
     }
-        if (count===0) {
-            alert('u winn')
+    if (count === 0) {
+        alert('u winn')
     }
 }
