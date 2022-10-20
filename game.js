@@ -70,6 +70,7 @@ function openCard(e) {
     checkPictures(cards)
 }
 
+
 function checkPictures(cards) {
     let count=0,
     src = '',
@@ -86,7 +87,9 @@ function checkPictures(cards) {
                 moveCounter()
                 if (card.querySelector('img').getAttribute('src') === src) {
                     card.id = '1'
+                    card.classList.add('opened')
                     openedCard.id = '1'
+                    openedCard.classList.add('opened')
                     card.removeEventListener('click', openCard)
                     openedCard.removeEventListener('click', openCard)
                 } else {
@@ -102,6 +105,6 @@ function checkPictures(cards) {
         }
     }
         if (count===0) {
-            alert('u winn in mortii tei')
+            alert('u winn')
     }
 }
