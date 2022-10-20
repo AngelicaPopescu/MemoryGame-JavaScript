@@ -39,14 +39,6 @@ img.hidden {
     background-color: peachpuff;
 }
 
-.flip-card {
-  background-color: transparent;
-  width: 300px;
-  height: 200px;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
-}
-
-
 .overlay {
 	position: fixed;
 	top: 0;
@@ -67,8 +59,8 @@ img.hidden {
 .popup {
 	margin: 70px auto;
 	padding: 20px;
-	background: #4e762b;
-	border-radius: 5px;
+	background: mediumvioletred;
+	border-radius: 15px;
 	width: 60%;
 	position: relative;
 	transition: all 5s ease-in-out;
@@ -95,11 +87,11 @@ img.hidden {
 }
 
 .popup .close:hover {
-	color: #E5F720;
+	color: deeppink;
 }
 
 .popup .content-1,
-.content-2 {
+.content-2, .content-3 {
 	max-height: 30%;
 	overflow: auto;
 	text-align: center;

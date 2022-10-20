@@ -33,7 +33,7 @@ function stopMyTimer() {
 function moveCounter() {
     let moveCount = document.querySelector('.moves')
     moves++
-    moveCount.innerHTML = moves + 'moves'
+    moveCount.innerHTML = moves + ' moves'
 }
 
 function getPictures() {
