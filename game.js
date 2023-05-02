@@ -83,7 +83,6 @@ function openCard(e) {
     }
 }
 
-
 function checkPictures(cards) {
     let count = 0,
         src = '',
